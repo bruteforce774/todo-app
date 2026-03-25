@@ -2,8 +2,15 @@ import type { Todo } from '../types'
 import TodoItem from './TodoItem'
 
 function TodoList({ todos }: { todos: Todo[] }) {
-  // map over todos and render a TodoItem for each
-  // each TodoItem needs a key prop — use todo.id
+  const todoItems = todos.map(todo => (
+    <li key={todo.id}>
+      <TodoItem todo={todo} />
+    </li>
+  ))
+
+  return (
+    <ul>{todoItems}</ul>
+  )
 }
 
 export default TodoList
