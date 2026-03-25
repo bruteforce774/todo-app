@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import TodoList from './components/TodoList.tsx'
 
 const App = () => {
   const [todos, setTodos] = useState([])
@@ -25,7 +26,7 @@ const App = () => {
         placeholder='Add a todo...'
       />
       <button onClick={handleAdd}>Add</button>
-      <p>{todos.length} todos</p>
+      <TodoList todos={todos} />
     </div>
   )
 }
