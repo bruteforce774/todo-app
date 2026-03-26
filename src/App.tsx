@@ -1,31 +1,25 @@
 import { useState } from 'react'
+import type { Todo } from './types.ts'
 import TodoList from './components/TodoList.tsx'
+import AddTodo from './components/AddTodo.tsx'
 
 const App = () => {
-  const [todos, setTodos] = useState([])
-  const [inputText, setInputText] = useState('')
+  const [todos, setTodos] = useState<Todo[]>([])
 
-  function handleAdd() {
-    if(!inputText.trim()) return
+  function handleAdd(text: string) {
 
     const newTodo = {
       id: Date.now(),
-      text: inputText.trim(),
+      text: text.trim(),
       done: false
     }
 
     setTodos([...todos, newTodo])
-    setInputText('')
   }
 
   return (
     <div>
-      <input 
-        value={inputText}
-        onChange={(e) => setInputText(e.target.value)}
-        placeholder='Add a todo...'
-      />
-      <button onClick={handleAdd}>Add</button>
+      <AddTodo onAdd={handleAdd} />
       <TodoList todos={todos} />
     </div>
   )
